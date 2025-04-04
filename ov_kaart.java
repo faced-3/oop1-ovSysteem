@@ -5,19 +5,24 @@ import java.util.Scanner;
 public class ov_kaart
 {
 
-double saldo = 10.0;
+double saldo = 3.0;
 boolean incheck = false;
 String plaats;
 
-    public void ov_chipKaart() {
-	double saldo; 
-	boolean incheck = false;
-	String plaats;
-    }
+   
     public boolean getincheck() {
 	return incheck;
     }
-    public double saldoWaarde() {
+    public void setIncheck(boolean p) {
+	incheck = p;
+    }
+    public void setSaldo(double s) {
+	saldo = s;
+       }
+    public void setPlaats(String p) {
+   	plaats = p;
+          }
+    public double getSaldo() {
   	return saldo;
       }
 

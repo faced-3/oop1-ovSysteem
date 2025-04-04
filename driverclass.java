@@ -5,12 +5,22 @@ public class driverclass
     public static void main(String[] args) {
 	ov_kaart oc = new ov_kaart();
 	poort po = new poort();
+//	    Scanner input = new Scanner(System.in);
+	 
 	
-	System.out.println(po.inchecken(oc));
-	System.out.println(po.info(oc));
-	System.out.println(po.betaal(oc));
+	
+	   
+	
+	
+	
+	po.inchecken(oc);
+//	 po.betaal(oc);
+System.out.println(oc.saldo);
+	po.info(oc);
+	
+	po.inchecken(oc);
 
-        oc.ov_chipKaart();
+	po.info(oc);
     }
     
 }

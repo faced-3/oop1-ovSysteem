@@ -5,37 +5,56 @@ public class poort
 	
 boolean incheckInfo;
 
-    public boolean inchecken(ov_kaart o) {
-	
-	
-	incheckInfo = o.getincheck();
+String notSaldo = "u heeft niet genoeg saldo";
+double startWaarde = 1.50;
+String lokaatie;
 
+public void keuze() {
+    
+    
+}
+
+    public void inchecken(ov_kaart o) {
+	
+	
 	if(o.getincheck() == false ) {
-   	    
-   	 incheckInfo = true;
+	    if(o.saldo > startWaarde) {
+		o.setIncheck(true);
+		 o.saldo -= startWaarde;
+
+	    }else {
+
+   	o.setIncheck(false);
+   	 }
    	}else {
-   	 incheckInfo = false;
+      	 o.setIncheck(false);
    	}
-   	return incheckInfo;
        }
     
-    public String info(ov_kaart o) {
+    public void info(ov_kaart o) {
 	
-	if(incheckInfo == true) {
-	    return "u bent ingecheckt";
+	if(o.getincheck() == true) {
+	    System.out.println("u bent ingecheckt"); 
 	}else {
-	    return "u bent al ingecheckt";
+	    if(o.getincheck() == false && o.saldo < startWaarde) {
+		System.out.println("u heeft niet genoeg saldo");
+
+	    }else {
+	    
+	    o.setIncheck(false);
+	    System.out.println("u bent uigecheckt" + " " +  o.saldo);
+	    }
+	    }
 	    
 
-	}
+	
     }
-    public double betaal(ov_kaart w) {
+    public void betaal(ov_kaart o) {
+	
+	    o.saldo -= startWaarde;
+
+	}
 	
     
-	if(incheckInfo == true) {
-	    return w.saldoWaarde()-1.50;
-	}else {
-	    return w.saldoWaarde()-0.0;
-    }
-   }
+  
 }
