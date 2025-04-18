@@ -1,60 +1,55 @@
 package oop1eind;
-import java.util.Scanner;
+
 public class poort
 {
-	
-boolean incheckInfo;
+    double startWaarde = 1.50; // Tarief per rit
+    String locatie; // huidige poort-locatie
 
-String notSaldo = "u heeft niet genoeg saldo";
-double startWaarde = 1.50;
-String lokaatie;
-
-public void keuze() {
-    
-    
-}
-
-    public void inchecken(ov_kaart o) {
-	
-	
-	if(o.getincheck() == false ) {
-	    if(o.saldo > startWaarde) {
-		o.setIncheck(true);
-		 o.saldo -= startWaarde;
-
-	    }else {
-
-   	o.setIncheck(false);
-   	 }
-   	}else {
-      	 o.setIncheck(false);
-   	}
-       }
-    
-    public void info(ov_kaart o) {
-	
-	if(o.getincheck() == true) {
-	    System.out.println("u bent ingecheckt"); 
-	}else {
-	    if(o.getincheck() == false && o.saldo < startWaarde) {
-		System.out.println("u heeft niet genoeg saldo");
-
-	    }else {
-	    
-	    o.setIncheck(false);
-	    System.out.println("u bent uigecheckt" + " " +  o.saldo);
+    public void inUitChecken(ov_kaart o)
+    {
+	// Inchecken als nog niet ingecheckt en genoeg saldo
+	if (!o.getIncheck())
+	{
+	    if (o.saldo > startWaarde)
+	    {
+		o.setIncheck(true); // Markeer als ingecheckt
+		o.saldo -= startWaarde; // Trek tarief af van saldo
+		o.plaatsInchecken = locatie; // Sla incheck-locatie op
+	    } else
+	    {
+		o.setIncheck(false); // Onvoldoende saldo: blijft uit
 	    }
-	    }
-	    
-
-	
-    }
-    public void betaal(ov_kaart o) {
-	
-	    o.saldo -= startWaarde;
-
+	} else
+	{
+	    // Uitchecken als al ingecheckt
+	    o.setIncheck(false); // Markeer als uitgecheckt
+	    o.plaatsUitchecken = locatie; // Sla uitcheck-locatie op
 	}
-	
-    
-  
+    }
+
+    public void info(ov_kaart o)
+    {
+	if (o.getIncheck())
+	{
+	    System.out.println("u bent ingecheckt"); // Toon ingecheckt
+	    System.out.println(locatie); // Toon locatie
+	} else
+	{
+	    if (o.saldo < startWaarde)
+	    {
+		System.out.println("u heeft niet genoeg saldo"); // Te weinig saldo
+	    } else
+	    {
+		o.setIncheck(false); // Herbevestig uitgecheckt
+		System.out.println("u bent uitgecheckt " + o.saldo); // Toon saldo
+		System.out.println(locatie); // Toon locatie
+	    }
+	}
+    }
+
+    public void setLokatie(String l)
+    {
+	locatie = l; // Stel huidige locatie in
+    }
+
 }
